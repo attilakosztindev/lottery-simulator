@@ -6,13 +6,13 @@ import AppPage from '@/components/AppPage'
 import AppValidationBox from '@/components/AppValidationBox'
 
 onMounted(() => {
+  countMatches(generatedCryptoNumbers.value, inputNumbers.value)
   if (isAuto.value) inputNumbers.value = generateCryptoNumbers()
-  updateInterval(generationSpeed.value)
 })
 
 const generatedCryptoNumbers = ref(new Array(5).fill(0))
 const inputNumbers = ref([1, 2, 3, 4, 5])
-const isAuto = ref(true)
+const isAuto = ref(false)
 const generationSpeed = ref(1000)
 const numberOfTickets = ref(0)
 let intervalId = null
@@ -58,6 +58,10 @@ const summary = computed(() => {
   ]
 })
 
+const itemClass = computed(() => ({
+  'result--summary-item-win': matches.value[matches.value.length - 1].value > 0
+}))
+
 const inputClass = (number) => {
   const uniqueNumber =
     inputNumbers.value.filter((n) => n === number).length === 1
@@ -65,9 +69,11 @@ const inputClass = (number) => {
     return 'result--input-number-error'
   }
 }
-
 watch(isAuto, (val) => {
-  if (val) inputNumbers.value = generateCryptoNumbers()
+  if (val) {
+    inputNumbers.value = generateCryptoNumbers()
+    updateInterval(generationSpeed.value)
+  }
 })
 
 watch(generationSpeed, (val) => {
@@ -108,25 +114,31 @@ const generateCryptoNumbers = () => {
 
 const countMatches = (lotteryNumbers, inputNumbers) => {
   let count = 0
+  console.log('ys')
   for (let i = 0; i < lotteryNumbers.length; i++) {
     if (lotteryNumbers[i] === inputNumbers[i]) {
       count++
     }
   }
+  updateInterval(generationSpeed.value)
   if (count >= 2 && count <= 5) {
+    console.log('ys')
     matches.value[count - 2].value++
   }
+  if (count === 5) clearInterval(intervalId)
   numberOfTickets.value++
 }
 
 const updateInterval = (speed) => {
   clearInterval(intervalId)
-  intervalId = setInterval(() => {
-    generatedCryptoNumbers.value = generateCryptoNumbers()
-    if (isAuto.value || validateInputNumbers) {
-      countMatches(generatedCryptoNumbers.value, inputNumbers.value)
-    }
-  }, speed)
+  if (generatedCryptoNumbers.value !== inputNumbers.value) {
+    intervalId = setInterval(() => {
+      generatedCryptoNumbers.value = generateCryptoNumbers()
+      if (isAuto.value || validateInputNumbers) {
+        countMatches(generatedCryptoNumbers.value, inputNumbers.value)
+      }
+    }, speed)
+  }
 }
 </script>
 
@@ -138,7 +150,7 @@ app-page
       section.result--summary
         article.result--summary-row(v-for="(data, index) in summary" :key="index")
           label.result--summary-item {{ data.label }}
-          p.result--summary-item {{ data.value }}
+          p.result--summary-item(:class="itemClass") {{ data.value }}
       section.result--matches
         article.result--match(v-for="(match, index) in matches" :key="index")
           label.result--match-label {{match.label}}
@@ -157,7 +169,7 @@ app-page
         app-checkbox.result--auto-checkbox(v-model:value="isAuto")
       section.result--slide
         label.result--slide-label Speed
-        slider.result--slide-slider(v-model="generationSpeed" :min="100" :max="1000" color="#A5D9C8" track-color="#E9F5F1" :height="4" always-show-handle sticky)
+        slider.result--slide-slider(v-model="generationSpeed" :min="1" :max="1000" color="#A5D9C8" track-color="#E9F5F1" :height="4" always-show-handle sticky)
 </template>
 
 <style lang="sass">
@@ -189,6 +201,8 @@ app-page
       margin-bottom: 6px
     @media (min-width: 601px)
       max-width: 325px
+    & > .result--summary-row:nth-child(2) > .result--summary-item-win
+      font-weight: 800 !important
     .result--summary-row
       display: flex
       align-items: center
@@ -274,6 +288,7 @@ app-page
           font-size: 12px
           width: 22px
           height: 25px
+          border-radius: 5px
         @include box-shadow(2px 2px 10px rgba(0, 0, 0, 0.1))
     .result--generated-label, .result--input-label
       font-size: 16px
