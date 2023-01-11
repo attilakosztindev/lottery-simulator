@@ -114,7 +114,6 @@ const generateCryptoNumbers = () => {
 
 const countMatches = (lotteryNumbers, inputNumbers) => {
   let count = 0
-  console.log('ys')
   for (let i = 0; i < lotteryNumbers.length; i++) {
     if (lotteryNumbers[i] === inputNumbers[i]) {
       count++
@@ -122,7 +121,6 @@ const countMatches = (lotteryNumbers, inputNumbers) => {
   }
   updateInterval(generationSpeed.value)
   if (count >= 2 && count <= 5) {
-    console.log('ys')
     matches.value[count - 2].value++
   }
   if (count === 5) clearInterval(intervalId)

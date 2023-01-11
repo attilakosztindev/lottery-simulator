@@ -6,7 +6,6 @@ const props = defineProps({ value: { type: Boolean, required: true } })
 const value = useVModel(props, 'value')
 
 const updateValue = () => {
-  console.log(value.value)
   value.value = !value.value
 }
 </script>
