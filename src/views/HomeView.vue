@@ -132,7 +132,7 @@ const updateInterval = (speed) => {
   if (generatedCryptoNumbers.value !== inputNumbers.value) {
     intervalId = setInterval(() => {
       generatedCryptoNumbers.value = generateCryptoNumbers()
-      if (isAuto.value || validateInputNumbers) {
+      if (isAuto.value || validateInputNumbers()) {
         countMatches(generatedCryptoNumbers.value, inputNumbers.value)
       }
     }, speed)
