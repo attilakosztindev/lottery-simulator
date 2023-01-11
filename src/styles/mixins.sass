@@ -1,0 +1,25 @@
+@mixin flex-center
+  display: flex
+  justify-content: center
+  align-items: center
+@mixin box-shadow($shadow...)
+  -webkit-box-shadow: $shadow
+  -moz-box-shadow: $shadow
+  -ms-box-shadow: $shadow
+  box-shadow: $shadow
+@mixin linear-gradient($fallback ,$gradient...)
+  background: $fallback
+  background: linear-gradient($gradient)
+  background: -webkit-linear-gradient($gradient)
+  background: -moz-linear-gradient($gradient)
+  background: -o-linear-gradient($gradient)
+  background: -ms-linear-gradient($gradient)
+@mixin transform($property)
+  -webkit-transform: $property
+  -ms-transform: $property
+  transform: $property
+@mixin background-image($image)
+  background-image: $image
+  -webkit-background-image: $image
+  -moz-background-image: $image
+  -o-background-image: $image

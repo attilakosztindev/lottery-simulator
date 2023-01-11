@@ -4,9 +4,9 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       sass: {
-        data: `
-        @import "@/styles/mixins.sass";
-        @import "@/styles/common.sass";
+        additionalData: `
+        @import "@/styles/mixins.sass"
+        @import "@/styles/common.sass"
         `
       }
     }

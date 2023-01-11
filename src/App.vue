@@ -1,5 +1,10 @@
+<script setup>
+import AppHeader from '@/components/AppHeader'
+</script>
+
 <template lang="pug">
 div
+  app-header
   router-view
 </template>
 
