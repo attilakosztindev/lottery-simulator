@@ -1,4 +1,4 @@
-# 🎲 Lotto Simulator Web Application
+# 🎲 Lottery Simulator Web Application
 
 This project is a web-based lottery simulator designed for research purposes. The goal is to showcase how many attempts it takes to achieve specific matches, up to a jackpot (5 hits). The simulation replicates the Hungarian *Ötös Lottó* mechanics.
 
@@ -11,7 +11,7 @@ This project is a web-based lottery simulator designed for research purposes. Th
    - The simulation starts automatically when the page loads and runs continuously.
    - Stops when a 5-hit ticket is achieved, highlighting the elapsed years prominently.
 
-2. **Lotto Mechanics**:  
+2. **Lottery Mechanics**:  
    - Generates 5 numbers from 1 to 90, without repetition.
    - Displays the drawn numbers on the interface.
 
