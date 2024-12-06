@@ -1,7 +1,7 @@
-# 🎲 Lottery Simulator Web Application
+# 🎲 Lotto Simulator Web Application
 
 This project is a web-based lottery simulator designed for research purposes. The goal is to showcase how many attempts it takes to achieve specific matches, up to a jackpot (5 hits). The simulation replicates the Hungarian *Ötös Lottó* mechanics.
-
+[**You can find my solution here!**](https://strong-unicorn-87c612.netlify.app/)  
 ---
 
 ## 📝 Application Specification
@@ -11,7 +11,7 @@ This project is a web-based lottery simulator designed for research purposes. Th
    - The simulation starts automatically when the page loads and runs continuously.
    - Stops when a 5-hit ticket is achieved, highlighting the elapsed years prominently.
 
-2. **Lottery Mechanics**:  
+2. **Lotto Mechanics**:  
    - Generates 5 numbers from 1 to 90, without repetition.
    - Displays the drawn numbers on the interface.
 
@@ -46,6 +46,15 @@ This project is a web-based lottery simulator designed for research purposes. Th
 
 ---
 
+## 🎨 Design
+
+Since this is an experimental application, the client didn’t request a fully detailed design. However, our team has prepared a basic **look & feel** guide to provide a direction:  
+[**Figma Design**](https://www.figma.com/file/ys3GzXmcsDFN3HCqUlSkyk/Frontend-pr%C3%B3bafeladat?node-id=1%3A685)  
+
+Feel free to deviate from this and get creative if you like, but creativity is not a strict requirement.
+
+---
+
 ## 🚀 How It Works
 
 1. **Simulation Start**: Automatically begins on page load.
@@ -55,14 +64,6 @@ This project is a web-based lottery simulator designed for research purposes. Th
    - Monitor matches, elapsed time, tickets bought, and total expenses.
 4. **Adjust Speed**:
    - Use the slider to change the draw speed dynamically.
-
----
-
-## 🎨 User Interface Design
-
-- **Responsive Design**: Works seamlessly on desktop and mobile devices.
-- **Highlighting Jackpot**: The simulation pauses and highlights when a 5-hit is achieved.
-- **Intuitive Controls**: Simple controls for number selection and speed adjustment.
 
 ---
 
@@ -91,3 +92,4 @@ This project is a web-based lottery simulator designed for research purposes. Th
    ```bash
    git clone https://github.com/your-repo/lotto-simulator.git
    cd lotto-simulator
+
